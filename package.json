@@ -47,7 +47,7 @@
     "ws": "^8.5.0"
   },
   "scripts": {
-    "start": "concurrently \"cross-env PORT=3098 react-scripts start\" \"node servers/electron-websocket.js\" ",
+    "start": "cross-env PORT=3098 react-scripts start",
     "start:electron": "electron .",
     "build": "react-scripts build",
     "test": "react-scripts test",

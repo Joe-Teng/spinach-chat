@@ -1,22 +1,29 @@
-import { createSlice, configureStore, } from '@reduxjs/toolkit'
+import { createSlice, configureStore } from "@reduxjs/toolkit";
 
 const ChatSlice = createSlice({
-  name: 'chatlist',
+  name: "chatlist",
   initialState: {
     currentChat: null,
-    chatListBox: []
+    chatListBox: [],
+    userInfo: {
+      avartar: "",
+      name: ""
+    }
   },
   reducers: {
     handleCurrentChat: (state, param) => {
-      (state.currentChat as any) = param.payload
+      state.currentChat = param?.payload;
+    },
+    login: (state, param) => {
+      state.userInfo = param?.payload;
     }
   }
-})
+});
 
-export const { handleCurrentChat } = ChatSlice.actions
+export const { handleCurrentChat, login } = ChatSlice.actions;
 
 export const store = configureStore({
   reducer: {
     chatReducer: ChatSlice.reducer
   }
-})
+});

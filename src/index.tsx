@@ -5,12 +5,10 @@ import "./index.css";
 import { Provider } from "react-redux";
 import { store } from "./store";
 
-const ws = new WebSocket("ws://localhost:8080");
-
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <AppRouter ws={ws} />
+      <AppRouter />
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")

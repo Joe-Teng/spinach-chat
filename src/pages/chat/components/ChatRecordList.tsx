@@ -63,8 +63,8 @@ const ChaTRecordList: FC<IChatRecordList> = ({
 
   return (
     <ChatRecordListContainer ref={scrollListRef}>
-      {chatRecordData?.map((item: IChatRecordData) => (
-        <ChaTRecordListItem {...item} />
+      {chatRecordData?.map((item: IChatRecordData, index: number) => (
+        <ChaTRecordListItem {...item} key={`${index}${item.content}`} />
       ))}
     </ChatRecordListContainer>
   );
