@@ -40,7 +40,7 @@ const ChatListItem: FC<IChatListItem> = ({ item, frindsStuff }) => {
       }}
     >
       <ChatAvatar>
-        <Avartar source={item.avartar} />
+        {/* <Avartar source={item.avartar} /> */}
       </ChatAvatar>
       <ChatInfo>
         <ChatTitle>

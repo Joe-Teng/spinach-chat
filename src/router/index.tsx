@@ -37,42 +37,48 @@ const AppRouter: FC<IAppRouter> = () => {
   }
 
   const connectWebsocket = () => {
+    /**
+     * @chatType
+     * 0: save current user info
+     * 1: send message to someone
+     * 2: send message to somegroup
+     */
     if (!ws && user && user.name) {
-      let _ws = new WebSocket("ws://192.168.202.6:8080");
+      // ws://192.168.202.6:8080
+      let _ws = new WebSocket("");
       _ws.onopen = () => {
         console.log(`${user.name} 连接成功`);
       };
       _ws.onclose = function () {
-        connectWebsocket();
+        // connectWebsocket();
       };
       _ws.onmessage = function (event: any) {
-        if (JSON.parse(event?.data)?.init) {
-          localStorage.setItem("socketId", JSON.parse(event?.data)?.socketId);
-        } else if (JSON.parse(event?.data)?.message) {
-          console.log(
-            "%cindex.tsx line:55 object",
-            "color: #007acc;",
-            JSON.parse(event?.data)?.message
-          );
+        if (event?.data && !!JSON.parse(event?.data)?.init) {
+          const userInfo = {
+            chatType: 0,
+            userName: user?.name,
+            socketId: JSON.parse(event?.data)?.socketId
+          };
+          _ws.send(JSON.stringify(userInfo));
         }
       };
       setWs(_ws);
     }
   };
   useEffect(() => {
-    connectWebsocket();
+    // connectWebsocket();
   }, [user]);
 
   return (
     <Router>
       <AppContainer>
         <NavigationBar>
-          <Avartar
+          {/* <Avartar
             source={
               user.avartar ||
               "https://img0.baidu.com/it/u=719887659,2663975087&fm=253&fmt=auto&app=138&f=JPG?w=400&h=250"
             }
-          />
+          /> */}
         </NavigationBar>
         <wwsContext.Provider value={{ chatRecordData }}>
           <RouterContent>

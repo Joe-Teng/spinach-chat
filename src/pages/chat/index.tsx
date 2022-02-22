@@ -110,10 +110,11 @@ const ChatPage: FC<{ ws: WebSocket | null; user: any }> = ({ ws, user }) => {
   const sendMessage = () => {
     ws?.send(
       JSON.stringify({
+        chatType: 1,
         from: user.name,
         to: selectedUser?.name,
         message: inputMessageRef.current?.innerText,
-        socketId: localStorage.getItem("socketId")
+        date: new Date().getTime()
       })
     );
   };

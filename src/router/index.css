@@ -1,0 +1,21 @@
+.tabs {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #eee;
+  padding: 8px 4px;
+}
+
+.tabs .tabs-item {
+  flex: 1;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.tabs .tabs-item.active {
+  background: lightskyblue;
+  cursor: pointer;
+}
